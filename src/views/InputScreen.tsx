@@ -1,21 +1,22 @@
+import React, {FC, useState} from 'react';
 import {StyleSheet, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {View, Text, Image, Input, Button} from 'native-base';
-import React, {FC, useState} from 'react';
 import userListsId from '../../input/leaderboard.json';
-import {useDispatch} from 'react-redux';
+import {useAppDispatch} from '../redux/hook';
 import {searchUserId} from '../redux/userId/userIdSlice';
 
-const InputScreen: FC = ({navigation}: any) => {
-  const dispatch = useDispatch();
-  const [userId, setUserId] = useState('');
-  const [errorMsg, setErrorMsg] = useState(false);
+const InputScreen: FC = React.memo(({navigation}: any) => {
+  const dispatch = useAppDispatch();
+  const [userId, setUserId] = useState<string>('');
+  const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const userLists = Object.values(userListsId);
-  const isLogin = userLists.find(tiem => tiem.uid === userId);
-  const handleSubmit = () => {
-    if (isLogin) {
+  const isUser = userLists.find(item => item.uid === userId);
+
+  const handleInput = () => {
+    if (isUser) {
       navigation.navigate('Leaderboard');
-      dispatch(searchUserId(userId));
       setErrorMsg(false);
+      dispatch(searchUserId(userId));
     } else {
       console.log('Wrong User Id!!! Please input Id correctly');
       setErrorMsg(true);
@@ -58,7 +59,7 @@ const InputScreen: FC = ({navigation}: any) => {
           )}
 
           <Button
-            onPress={handleSubmit}
+            onPress={handleInput}
             size="lg"
             variant="solid"
             backgroundColor="#A4A6EA"
@@ -69,7 +70,7 @@ const InputScreen: FC = ({navigation}: any) => {
       </View>
     </TouchableWithoutFeedback>
   );
-};
+});
 
 const styles = StyleSheet.create({
   wrapper: {

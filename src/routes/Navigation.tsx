@@ -11,7 +11,7 @@ const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Input"
+          name="InputScreen"
           component={InputScreen}
           options={{headerShown: false}}
         />
