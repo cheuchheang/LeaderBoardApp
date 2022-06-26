@@ -20,16 +20,16 @@ const BoardScreen: FC = React.memo(() => {
   return (
     <Box style={styles.wrapper} safeArea={4}>
       <Stack direction="row" space="1">
-        <Heading style={{flex: 2, color: '#fff'}} fontSize="xs">
+        <Heading style={{flex: 2, ...styles.header}} fontSize="xs">
           Name
         </Heading>
-        <Heading style={{flex: 1.3, color: '#fff'}} fontSize="xs">
+        <Heading style={{flex: 1.3, ...styles.header}} fontSize="xs">
           Rank
         </Heading>
-        <Heading style={{flex: 1.3, color: '#fff'}} fontSize="xs">
+        <Heading style={{flex: 1.3, ...styles.header}} fontSize="xs">
           Number of bananas
         </Heading>
-        <Heading style={{flex: 1.5, color: '#fff'}} fontSize="xs">
+        <Heading style={{flex: 1.5, ...styles.header}} fontSize="xs">
           isCurrentUser?
         </Heading>
       </Stack>
@@ -71,5 +71,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     color: '#fff',
+    textAlign: 'center',
+  },
+  header: {
+    color: '#fff',
+    textAlign: 'center',
   },
 });

@@ -18,7 +18,6 @@ const InputScreen: FC = React.memo(({navigation}: any) => {
       setErrorMsg(false);
       dispatch(searchUserId(userId));
     } else {
-      console.log('Wrong User Id!!! Please input Id correctly');
       setErrorMsg(true);
     }
   };
@@ -51,7 +50,7 @@ const InputScreen: FC = React.memo(({navigation}: any) => {
               style={{
                 color: '#fff',
                 fontWeight: 'bold',
-                fontSize: 18,
+                fontSize: 14,
                 marginTop: 8,
               }}>
               Wrong User Id, please input Id correctly!
