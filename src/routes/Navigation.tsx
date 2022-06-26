@@ -2,9 +2,10 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StackParamsList} from '../types/navigation';
+import {COLORS} from '../constants/colors';
 const Stack = createNativeStackNavigator<StackParamsList>();
-import InputScreen from '../views/InputScreen';
-import BoardScreen from '../views/BoardScreen';
+import InputScreen from '../components/InputScreen/InputScreen';
+import BoardScreen from '../components/BoardScreen/BoardScreen';
 
 const Navigation = () => {
   return (
@@ -20,10 +21,10 @@ const Navigation = () => {
           component={BoardScreen}
           options={{
             headerStyle: {
-              backgroundColor: '#4A4AB6',
+              backgroundColor: COLORS.primary,
             },
             headerShadowVisible: false,
-            headerTintColor: '#fff',
+            headerTintColor: COLORS.white,
           }}
         />
       </Stack.Navigator>

@@ -1,11 +1,12 @@
 import React, {FC, useState} from 'react';
 import {StyleSheet, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {View, Text, Image, Input, Button} from 'native-base';
-import userListsId from '../../input/leaderboard.json';
-import {useAppDispatch} from '../redux/hook';
-import {searchUserId} from '../redux/userId/userIdSlice';
+import {COLORS} from '../../constants/colors';
+import userListsId from '../../../assets/input/leaderboard.json';
+import {useAppDispatch} from '../../redux/hook';
+import {searchUserId} from '../../redux/userId/userIdSlice';
 
-const InputScreen: FC = React.memo(({navigation}: any) => {
+const InputScreen: FC = ({navigation}: any) => {
   const dispatch = useAppDispatch();
   const [userId, setUserId] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
@@ -27,7 +28,7 @@ const InputScreen: FC = React.memo(({navigation}: any) => {
       <View style={styles.wrapper}>
         <View style={styles.containerTitle}>
           <Image
-            source={require('./../../assets/monkey.png')}
+            source={require('../../../assets/monkey.png')}
             size={44}
             alt="monkey"
           />
@@ -38,7 +39,7 @@ const InputScreen: FC = React.memo(({navigation}: any) => {
           <Input
             placeholder="Input your id here"
             w="80%"
-            backgroundColor="#fff"
+            backgroundColor={COLORS.white}
             onChangeText={text => {
               setUserId(text);
               setErrorMsg(false);
@@ -48,7 +49,7 @@ const InputScreen: FC = React.memo(({navigation}: any) => {
           {errorMsg && (
             <Text
               style={{
-                color: '#fff',
+                color: COLORS.white,
                 fontWeight: 'bold',
                 fontSize: 14,
                 marginTop: 8,
@@ -61,7 +62,7 @@ const InputScreen: FC = React.memo(({navigation}: any) => {
             onPress={handleInput}
             size="lg"
             variant="solid"
-            backgroundColor="#A4A6EA"
+            backgroundColor={COLORS.secondary}
             style={styles.button}>
             Click
           </Button>
@@ -69,12 +70,12 @@ const InputScreen: FC = React.memo(({navigation}: any) => {
       </View>
     </TouchableWithoutFeedback>
   );
-});
+};
 
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#4A4AB6',
+    backgroundColor: COLORS.primary,
     alignItems: 'center',
     flexDirection: 'column',
   },
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    color: '#fff',
+    color: COLORS.white,
     fontSize: 32,
     lineHeight: 32,
     marginTop: 28,
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     marginBottom: 28,
     fontSize: 18,
-    color: '#A4A6EA',
+    color: COLORS.secondary,
     fontWeight: 'bold',
   },
   button: {

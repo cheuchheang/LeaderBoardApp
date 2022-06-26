@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
-import {StyleSheet} from 'react-native';
 import {Box, FlatList, HStack, Text, Heading, Stack} from 'native-base';
-import userId from '../../input/leaderboard.json';
-import {selectUserId} from '../redux/userId/userIdSlice';
-import {useAppSelector} from '../redux/hook';
+import {styles} from './style';
+import userId from '../../../assets/input/leaderboard.json';
+import {selectUserId} from '../../redux/userId/userIdSlice';
+import {useAppSelector} from '../../redux/hook';
 
-const BoardScreen: FC = React.memo(() => {
+const BoardScreen: FC = () => {
   const currentUser = useAppSelector(selectUserId);
   const userLists = Object.values(userId);
   userLists.sort((a, b) => b.bananas - a.bananas);
@@ -20,16 +20,16 @@ const BoardScreen: FC = React.memo(() => {
   return (
     <Box style={styles.wrapper} safeArea={4}>
       <Stack direction="row" space="1">
-        <Heading style={{flex: 2, ...styles.header}} fontSize="xs">
+        <Heading style={styles.header1} fontSize="xs">
           Name
         </Heading>
-        <Heading style={{flex: 1.3, ...styles.header}} fontSize="xs">
+        <Heading style={styles.header2} fontSize="xs">
           Rank
         </Heading>
-        <Heading style={{flex: 1.3, ...styles.header}} fontSize="xs">
+        <Heading style={styles.header3} fontSize="xs">
           Number of bananas
         </Heading>
-        <Heading style={{flex: 1.5, ...styles.header}} fontSize="xs">
+        <Heading style={styles.header4} fontSize="xs">
           isCurrentUser?
         </Heading>
       </Stack>
@@ -38,14 +38,14 @@ const BoardScreen: FC = React.memo(() => {
         data={user}
         renderItem={({item, index}) => (
           <HStack>
-            <Text style={{...styles.text, flex: 2}}>{item.name}</Text>
-            <Text style={{...styles.text, flex: 1.3}}>
+            <Text style={styles.text1}>{item.name}</Text>
+            <Text style={styles.text2}>
               {index === 9 && indexOfCurrentuser > 9
                 ? indexOfCurrentuser + 1
                 : index + 1}
             </Text>
-            <Text style={{...styles.text, flex: 1.3}}>{item.bananas}</Text>
-            <Text style={{...styles.text, flex: 1.5}}>
+            <Text style={styles.text3}>{item.bananas}</Text>
+            <Text style={styles.text4}>
               {index < 9 && index === indexOfCurrentuser
                 ? 'yes'
                 : index === 9 && index === indexOfCurrentuser
@@ -59,22 +59,6 @@ const BoardScreen: FC = React.memo(() => {
       />
     </Box>
   );
-});
+};
 
 export default BoardScreen;
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    backgroundColor: '#4A4AB6',
-  },
-  text: {
-    fontSize: 12,
-    color: '#fff',
-    textAlign: 'center',
-  },
-  header: {
-    color: '#fff',
-    textAlign: 'center',
-  },
-});
