@@ -36,9 +36,10 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.secondary,
   },
   text: {
-    color: COLORS.white,
+    color: COLORS.error,
     fontWeight: 'bold',
     fontSize: 14,
     marginTop: 8,
+    textAlign: 'center',
   },
 });

@@ -49,7 +49,8 @@ const InputScreen: FC = ({navigation}: any) => {
 
           {errorMsg && (
             <Text style={styles.text}>
-              Wrong User Id, please input Id correctly!
+              Current user id does not exist! Please specify an existing user
+              id!
             </Text>
           )}
 
@@ -58,7 +59,7 @@ const InputScreen: FC = ({navigation}: any) => {
             size="lg"
             variant="solid"
             style={styles.button}>
-            Click
+            Press
           </Button>
         </View>
       </View>
