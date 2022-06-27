@@ -1,6 +1,7 @@
 import React, {FC, useState} from 'react';
-import {StyleSheet, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {View, Text, Image, Input, Button} from 'native-base';
+import {styles} from './style';
 import {COLORS} from '../../constants/colors';
 import userListsId from '../../../assets/input/leaderboard.json';
 import {useAppDispatch} from '../../redux/hook';
@@ -47,13 +48,7 @@ const InputScreen: FC = ({navigation}: any) => {
           />
 
           {errorMsg && (
-            <Text
-              style={{
-                color: COLORS.white,
-                fontWeight: 'bold',
-                fontSize: 14,
-                marginTop: 8,
-              }}>
+            <Text style={styles.text}>
               Wrong User Id, please input Id correctly!
             </Text>
           )}
@@ -62,7 +57,6 @@ const InputScreen: FC = ({navigation}: any) => {
             onPress={handleInput}
             size="lg"
             variant="solid"
-            backgroundColor={COLORS.secondary}
             style={styles.button}>
             Click
           </Button>
@@ -71,40 +65,5 @@ const InputScreen: FC = ({navigation}: any) => {
     </TouchableWithoutFeedback>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    backgroundColor: COLORS.primary,
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
-  containerTitle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    color: COLORS.white,
-    fontSize: 32,
-    lineHeight: 32,
-    marginTop: 28,
-  },
-  containerInput: {
-    flex: 2,
-    alignItems: 'center',
-  },
-  inputTitle: {
-    lineHeight: 32,
-    marginTop: 28,
-    marginBottom: 28,
-    fontSize: 18,
-    color: COLORS.secondary,
-    fontWeight: 'bold',
-  },
-  button: {
-    marginTop: 20,
-  },
-});
 
 export default InputScreen;
