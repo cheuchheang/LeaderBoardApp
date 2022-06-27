@@ -4,6 +4,7 @@ import {styles} from './style';
 import userId from '../../../assets/input/leaderboard.json';
 import {selectUserId} from '../../redux/userId/userIdSlice';
 import {useAppSelector} from '../../redux/hook';
+import {showRank, isCurrentUser} from '../../utils/utils';
 
 const BoardScreen: FC = () => {
   const currentUser = useAppSelector(selectUserId);
@@ -20,40 +21,27 @@ const BoardScreen: FC = () => {
   return (
     <Box style={styles.wrapper} safeArea={4}>
       <Stack direction="row" space="1">
-        <Heading style={styles.header1} fontSize="xs">
-          Name
-        </Heading>
-        <Heading style={styles.header2} fontSize="xs">
-          Rank
-        </Heading>
-        <Heading style={styles.header3} fontSize="xs">
-          Number of bananas
-        </Heading>
-        <Heading style={styles.header4} fontSize="xs">
-          isCurrentUser?
-        </Heading>
+        {['Name', 'Rank', 'Number of bananas', 'isCurrentUser?'].map(item => (
+          <Heading style={styles.header} fontSize="xs">
+            {item}
+          </Heading>
+        ))}
       </Stack>
       <FlatList
         keyExtractor={item => item.uid}
         data={user}
         renderItem={({item, index}) => (
           <HStack>
-            <Text style={styles.text1}>{item.name}</Text>
-            <Text style={styles.text2}>
-              {index === 9 && indexOfCurrentuser > 9
-                ? indexOfCurrentuser + 1
-                : index + 1}
-            </Text>
-            <Text style={styles.text3}>{item.bananas}</Text>
-            <Text style={styles.text4}>
-              {index < 9 && index === indexOfCurrentuser
-                ? 'yes'
-                : index === 9 && index === indexOfCurrentuser
-                ? 'yes'
-                : index === 9 && indexOfCurrentuser > 9
-                ? 'yes'
-                : 'no'}
-            </Text>
+            {[
+              item.name,
+              showRank(index, indexOfCurrentuser),
+              item.bananas,
+              isCurrentUser(index, indexOfCurrentuser),
+            ].map(items => (
+              <Text key={items} style={styles.text}>
+                {items}
+              </Text>
+            ))}
           </HStack>
         )}
       />
