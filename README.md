@@ -10,5 +10,5 @@ This is a project that I created with React Native CLI. This leaderboard is the 
 * yarn android (in another terminal)
 ### How to pass User ID
 ---
-* input a right User ID in the textfield, press Button "Click" to navigate to board screen
-* input a wrong User ID in the textfield, show a message to input the right User ID when press Button "Click"
+* input a right User ID in the textfield, press Button "Press" to navigate to board screen
+* input a wrong User ID in the textfield, show a message to input the right User ID when press Button "Press"
